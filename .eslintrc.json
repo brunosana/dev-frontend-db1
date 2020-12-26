@@ -42,7 +42,17 @@
         "prettier/prettier": "error",
         "indent": "off",
         "react/jsx-indent": "off",
-        "react/jsx-indent-props": "off"
+        "react/jsx-indent-props": "off",
+        "no-use-before-define": "off",
+        "react/jsx-props-no-spreading": [
+            "off",
+            {
+              "explicitSpread": "enforce",
+              "html": "ignore",
+              "custom": "ignore",
+              "exceptions": []
+            }
+          ]
     },
     "settings": {
         "import/resolver": {
