@@ -1,5 +1,5 @@
 import React from 'react';
-import { AiOutlineMail, AiOutlineLock, AiOutlineLogin } from 'react-icons/ai';
+import { AiOutlineMail, AiOutlineLock } from 'react-icons/ai';
 import { Container, Content, Background } from './styles';
 import Logo from '../../assets/logo.svg';
 import Input from '../../components/Input';
