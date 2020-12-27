@@ -1,16 +1,11 @@
 import React from 'react';
-import { AiFillAlert } from 'react-icons/ai';
-import Input from './components/Input';
+import Login from './pages/Login';
+import Global from './styles/global';
 
 const App: React.FC = () => (
     <>
-        <h1>Hello World</h1>
-        <Input
-            name="email"
-            icon={AiFillAlert}
-            type="text"
-            placeholder="E-mail"
-        />
+        <Login />
+        <Global />
     </>
 );
 
