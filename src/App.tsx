@@ -1,10 +1,10 @@
 import React from 'react';
-import SignUp from './pages/SignUp';
+import Header from './components/Header';
 import Global from './styles/global';
 
 const App: React.FC = () => (
     <>
-        <SignUp />
+        <Header />
         <Global />
     </>
 );
