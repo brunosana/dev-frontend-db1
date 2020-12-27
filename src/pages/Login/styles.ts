@@ -17,7 +17,8 @@ export const Content = styled.div`
     max-width: 400px;
 
     form {
-        margin: 80px 0;
+        margin: 40px 0;
+        margin-bottom: 20px;
         width: 270px;
         text-align: center;
         align-items: center;
@@ -35,20 +36,37 @@ export const Content = styled.div`
             }
         }
     }
-    > a {
-        color: #ff9000;
-        display: block;
-        margin-top: 24px;
-        text-decoration: none;
-        transition: color 0.2s;
+
+    a {
+        background: #fff;
+        font-size: 14px;
+        font-weight: bold;
+        height: 47px;
+        border-radius: 7px;
+        border: 0;
+        padding: 0 12px;
+        color: #282828;
+        width: 100%;
+        max-width: 270px;
+        margin-top: 14px;
+        transition: background-color 0.2s;
         display: flex;
         align-items: center;
-        svg {
-            margin-right: 16px;
-        }
+        justify-content: center;
+        text-decoration: none;
         &:hover {
-            color: ${shade(0.2, '#F4EDE8')};
+            background: ${shade(0.2, '#fff')};
+            cursor: pointer;
         }
+    }
+    h4 {
+        margin-top: 20px;
+    }
+    #bar {
+        width: 100%;
+        max-width: 270px;
+        background: #444;
+        height: 2px;
     }
 `;
 

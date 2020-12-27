@@ -6,6 +6,7 @@ export default createGlobalStyle`
         padding: 0;
         box-sizing: border-box;
         outline: 0ch;
+        font-family: 'Roboto', sans-serif;
     }
 
     body {
@@ -13,7 +14,7 @@ export default createGlobalStyle`
         color: #FFF;
         -webkit-font-smoothing: antialiased;
     }
-    body, input, button {
-        font-family: ''
+    input, button, a {
+
     }
 `;

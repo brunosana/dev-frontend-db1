@@ -3,6 +3,7 @@ import { AiOutlineMail, AiOutlineLock, AiOutlineLogin } from 'react-icons/ai';
 import { Container, Content, Background } from './styles';
 import Logo from '../../assets/logo.svg';
 import Input from '../../components/Input';
+import Button from '../../components/Button';
 
 const Login: React.FC = () => (
     <>
@@ -21,11 +22,11 @@ const Login: React.FC = () => (
                         icon={AiOutlineLock}
                         placeholder="Password"
                     />
+                    <Button>Login</Button>
                 </form>
-                <a href="bola/gato">
-                    <AiOutlineLogin />
-                    Criar conta
-                </a>
+                <div id="bar" />
+                <h4>Não tem uma conta?</h4>
+                <a href="bola/gato">SignUP</a>
             </Content>
             <Background />
         </Container>

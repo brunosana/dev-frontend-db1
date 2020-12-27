@@ -10,7 +10,7 @@ export const Container = styled.div`
     align-items: center;
     color: #fff;
     input {
-        color: #f4ede8;
+        color: #fff;
         flex: 1;
         border: 0;
         background: transparent;
