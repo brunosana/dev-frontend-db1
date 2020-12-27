@@ -17,4 +17,7 @@ export default createGlobalStyle`
     input, button, a {
 
     }
+    button, a {
+        cursor: pointer;
+    }
 `;
