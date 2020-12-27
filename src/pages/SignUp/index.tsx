@@ -1,16 +1,21 @@
 import React from 'react';
-import { AiOutlineMail, AiOutlineLock } from 'react-icons/ai';
+import { AiOutlineMail, AiOutlineLock, AiOutlineUser } from 'react-icons/ai';
 import { Container, Content, Background } from './styles';
 import Logo from '../../assets/logo.svg';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
-const Login: React.FC = () => (
+const SignUp: React.FC = () => (
     <>
         <Container>
             <Content>
                 <img src={Logo} alt="Logo" />
                 <form>
+                    <Input
+                        name="username"
+                        icon={AiOutlineUser}
+                        placeholder="Username"
+                    />
                     <Input
                         name="email"
                         icon={AiOutlineMail}
@@ -22,15 +27,15 @@ const Login: React.FC = () => (
                         icon={AiOutlineLock}
                         placeholder="Password"
                     />
-                    <Button>Login</Button>
+                    <Button>Create Account</Button>
                 </form>
                 <div id="bar" />
-                <h4>Não tem uma conta?</h4>
-                <a href="bola/gato">SignUP</a>
+                <h4>Já tem uma conta?</h4>
+                <a href="bola/gato">Login</a>
             </Content>
             <Background />
         </Container>
     </>
 );
 
-export default Login;
+export default SignUp;
