@@ -1,10 +1,15 @@
 import React from 'react';
-import Header from './components/Header';
+import { AiOutlineAlert } from 'react-icons/ai';
+import Tooltip from './components/Tooltip';
 import Global from './styles/global';
 
 const App: React.FC = () => (
     <>
-        <Header />
+        <Tooltip
+            color="#F04738"
+            icon={AiOutlineAlert}
+            message="Email inválido"
+        />
         <Global />
     </>
 );
