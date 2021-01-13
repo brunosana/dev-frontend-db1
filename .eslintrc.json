@@ -39,7 +39,9 @@
               "tsx": "never"
             }
         ],
-        "prettier/prettier": "error",
+        "prettier/prettier": ["error", {
+           "endOfLine": "lf"
+         }],
         "indent": "off",
         "react/jsx-indent": "off",
         "react/jsx-indent-props": "off",
