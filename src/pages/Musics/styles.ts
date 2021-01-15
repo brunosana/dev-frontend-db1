@@ -28,6 +28,7 @@ export const MusicList = styled.div`
 
 export const MusicListTitle = styled.div`
     display: flex;
+    width: 100%;
     font-weight: bold;
     margin-bottom: 3px;
     border-bottom: 2px solid #444444;

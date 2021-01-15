@@ -5,6 +5,7 @@ import {
     AiOutlineEdit,
 } from 'react-icons/ai';
 import Header from '../../components/Header';
+import Foot from '../../components/Foot';
 import Logo from '../../assets/logo-only.svg';
 import { Container, Image, MusicList, MusicListTitle, Music } from './styles';
 
@@ -38,6 +39,7 @@ const Musics: React.FC = () => {
                     </Music>
                 </MusicList>
             </Container>
+            <Foot />
         </>
     );
 };
