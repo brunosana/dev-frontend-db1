@@ -1,12 +1,12 @@
 import React, { useState, useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import {
     AiOutlineSearch,
     AiOutlinePoweroff,
     AiOutlineBars,
     AiOutlineCloseCircle,
 } from 'react-icons/ai';
-import { Container, Content, Search, Logout } from './styles';
+import { Container, Content, Search, Logout, LogoutMobile } from './styles';
 
 import { useAuth } from '../../hooks/authContext';
 
@@ -28,14 +28,17 @@ const Header: React.FC = () => {
     return (
         <Container showSideBar={showSideBar}>
             <div id="sideBar">
-                <a href="oi">Home</a>
-                <a href="oi">Add Music</a>
-                <a href="oi">Logout</a>
+                <Link to="/home">Home</Link>
+                <Link to="/addmusic">Add Music</Link>
+                <LogoutMobile onClick={handleSignOut}>
+                    <AiOutlinePoweroff />
+                    <i>logout</i>
+                </LogoutMobile>
             </div>
             <Content>
                 <nav id="navHorizontal">
-                    <a href="oi">Home</a>
-                    <a href="oi">Add Music</a>
+                    <Link to="/home">Home</Link>
+                    <Link to="/addmusic">Add Music</Link>
                 </nav>
                 <button
                     type="button"
