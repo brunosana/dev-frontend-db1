@@ -3,6 +3,7 @@ import { AiOutlineMail, AiOutlineLock } from 'react-icons/ai';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
+import { Link, useHistory } from 'react-router-dom';
 import { Container, Content, Background } from './styles';
 import Logo from '../../assets/logo.svg';
 import Input from '../../components/Input';
@@ -19,6 +20,8 @@ const Login: React.FC = () => {
     const formRef = useRef<FormHandles>(null);
 
     const { signIn, user } = useAuth();
+
+    const history = useHistory();
 
     const handleSubmit = useCallback(
         async (data: SignInFormData) => {
@@ -37,6 +40,7 @@ const Login: React.FC = () => {
                     email: data.email,
                     password: data.password,
                 });
+                history.push('/home');
             } catch (err) {
                 const errors = getValidationErrors(err);
                 formRef.current?.setErrors(errors);
@@ -66,7 +70,7 @@ const Login: React.FC = () => {
                     </Form>
                     <div id="bar" />
                     <h4>Não tem uma conta?</h4>
-                    <a href="bola/gato">SignUP</a>
+                    <Link to="/signup">SignUP</Link>
                 </Content>
                 <Background />
             </Container>
