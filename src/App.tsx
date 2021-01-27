@@ -1,13 +1,12 @@
 import React from 'react';
-import { AiOutlineAlert } from 'react-icons/ai';
-import Tooltip from './components/Tooltip';
-import Musics from './pages/Musics';
-import EditMusic from './pages/EditMusic';
+import SignUp from './pages/SignUp';
+import Login from './pages/Login';
 import Global from './styles/global';
 
 const App: React.FC = () => (
     <>
-        <EditMusic />
+        <SignUp />
+        <Login />
         <Global />
     </>
 );

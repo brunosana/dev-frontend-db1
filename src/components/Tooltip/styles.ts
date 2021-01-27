@@ -1,56 +1,38 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-interface TooltipProps {
-    isVisible: boolean;
-}
-
-export const Box = styled.div<TooltipProps>`
-    position: absolute;
-    top: 1%;
-    right: 5%;
-    z-index: 1;
-    width: 220px;
-    resize: both;
-    background: ${props => props.color};
-    border: 0;
-    border-radius: 7px;
-    font-size: 14px;
-    display: flex;
-    flex-direction: column;
-    animation-name: moveIn;
-    animation-duration: 200ms;
-    animation-fill-mode: backwards;
-
-    #message {
-        padding: 14px;
-        font-style: normal;
-        display: flex;
-        align-items: center;
-        justify-content: start;
-    }
-
-    button {
-        background: none;
-        border: none;
-        color: #fff;
+export const Container = styled.div`
+    position: relative;
+    span {
+        width: 160px;
+        background: #ff9000;
+        padding: 8px;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: 500;
+        opacity: 0;
+        transition: opacity 0.4s;
+        visibility: hidden;
         position: absolute;
-        top: 2%;
-        right: 2%;
-    }
-
-    @keyframes moveIn {
-        from {
-            transform: translateX(150px);
-            transform: opacity(0%);
+        bottom: calc(100% + 12px);
+        left: 50%;
+        transform: translateX(-50%);
+        color: #444;
+        &::before {
+            content: '';
+            border-style: solid;
+            border-color: #ff9000 transparent;
+            border-width: 6px 6px 0 6px;
+            top: 100%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
-        to {
-            transform: translateX(0px);
-            transform: opacity(100%);
-        }
     }
-    ${props =>
-        props.isVisible &&
-        css`
-            display: none;
-        `}
+    &:hover span {
+        visibility: visible;
+        opacity: 1;
+    }
+    &:hover {
+        cursor: pointer;
+    }
 `;
