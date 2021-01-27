@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 import {
     AiOutlineSearch,
     AiOutlinePoweroff,
@@ -7,12 +8,22 @@ import {
 } from 'react-icons/ai';
 import { Container, Content, Search, Logout } from './styles';
 
+import { useAuth } from '../../hooks/authContext';
+
 const Header: React.FC = () => {
     const [showSideBar, setShowSideBar] = useState(false);
 
-    function handleShowSideBar() {
+    const handleShowSideBar = useCallback(() => {
         setShowSideBar(!showSideBar);
-    }
+    }, [showSideBar]);
+
+    const { signOut } = useAuth();
+    const history = useHistory();
+
+    const handleSignOut = useCallback(() => {
+        signOut();
+        history.push('/');
+    }, [signOut, history]);
 
     return (
         <Container showSideBar={showSideBar}>
@@ -44,7 +55,7 @@ const Header: React.FC = () => {
                         placeholder="Search for any music here..."
                     />
                 </Search>
-                <Logout>
+                <Logout onClick={handleSignOut}>
                     <AiOutlinePoweroff />
                     <i id="logoutText">logout</i>
                 </Logout>

@@ -3,6 +3,7 @@ import { AiOutlineMail, AiOutlineLock, AiOutlineUser } from 'react-icons/ai';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
+import { Link } from 'react-router-dom';
 import { Container, Content, Background } from './styles';
 import Logo from '../../assets/logo.svg';
 import Input from '../../components/Input';
@@ -56,7 +57,7 @@ const SignUp: React.FC = () => {
                     </Form>
                     <div id="bar" />
                     <h4>Já tem uma conta?</h4>
-                    <a href="bola/gato">Login</a>
+                    <Link to="/">Login</Link>
                 </Content>
                 <Background />
             </Container>
