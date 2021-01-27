@@ -1,36 +1,66 @@
-import React from 'react';
-import { AiOutlineMail, AiOutlineLock } from 'react-icons/ai';
+import React, { useCallback, useRef } from 'react';
+import {
+    AiOutlineMail,
+    AiOutlineLock,
+    AiOutlineShoppingCart,
+} from 'react-icons/ai';
+import { FormHandles } from '@unform/core';
+import { Form } from '@unform/web';
+import * as Yup from 'yup';
 import { Container, Content, Background } from './styles';
 import Logo from '../../assets/logo.svg';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+import getValidationErrors from '../../utils/getValidationErrors';
 
-const Login: React.FC = () => (
-    <>
-        <Container>
-            <Content>
-                <img src={Logo} alt="Logo" />
-                <form>
-                    <Input
-                        name="email"
-                        icon={AiOutlineMail}
-                        placeholder="Email"
-                    />
-                    <Input
-                        name="password"
-                        type="password"
-                        icon={AiOutlineLock}
-                        placeholder="Password"
-                    />
-                    <Button>Login</Button>
-                </form>
-                <div id="bar" />
-                <h4>Não tem uma conta?</h4>
-                <a href="bola/gato">SignUP</a>
-            </Content>
-            <Background />
-        </Container>
-    </>
-);
+const Login: React.FC = () => {
+    const formRef = useRef<FormHandles>(null);
+
+    const handleSubmit = useCallback(async (data: object) => {
+        try {
+            formRef.current?.setErrors({});
+            const schema = Yup.object().shape({
+                email: Yup.string()
+                    .required('E-mail obrigatório')
+                    .email('E-mail inválido'),
+                password: Yup.string().required('Password obrigatório'),
+            });
+            await schema.validate(data, {
+                abortEarly: false,
+            });
+        } catch (err) {
+            const errors = getValidationErrors(err);
+            formRef.current?.setErrors(errors);
+        }
+    }, []);
+
+    return (
+        <>
+            <Container>
+                <Content>
+                    <img src={Logo} alt="Logo" />
+                    <Form ref={formRef} onSubmit={handleSubmit}>
+                        <Input
+                            name="email"
+                            icon={AiOutlineMail}
+                            placeholder="Email"
+                        />
+                        <Input
+                            name="password"
+                            type="password"
+                            icon={AiOutlineLock}
+                            placeholder="Password"
+                        />
+                        <Button type="submit">Login</Button>
+                    </Form>
+                    <div id="bar" />
+                    <h4>Não tem uma conta?</h4>
+                    <a href="bola/gato">SignUP</a>
+                </Content>
+                <Background />
+            </Container>
+        </>
+    );
+};
 
 export default Login;
