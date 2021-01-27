@@ -145,3 +145,16 @@ export const Logout = styled.a`
         }
     }
 `;
+export const LogoutMobile = styled.a`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    svg {
+        margin-right: 5px;
+    }
+
+    &:hover {
+        color: ${shade(0.2, '#fff')};
+    }
+`;
