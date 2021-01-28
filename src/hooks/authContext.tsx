@@ -33,7 +33,6 @@ export const AuthProvider: React.FC = ({ children }) => {
             username: email,
             password,
         });
-        console.log(response.data);
 
         const { access: token } = response.data;
         localStorage.setItem(storageItems.token, token);
