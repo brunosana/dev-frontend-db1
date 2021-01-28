@@ -8,13 +8,12 @@ interface SignInCredentials {
 }
 
 interface AuthContextData {
-    user: object;
+    token: string;
     signIn(credentials: SignInCredentials): Promise<void>;
     signOut(): void;
 }
 interface AuthState {
     token: string;
-    user: object;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -23,44 +22,30 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 export const AuthProvider: React.FC = ({ children }) => {
     const [data, setData] = useState<AuthState>(() => {
         const token = localStorage.getItem(storageItems.token);
-        const user = localStorage.getItem(storageItems.user);
-        if (token && user) {
-            return { token, user: JSON.parse(user) };
+        if (token) {
+            return { token };
         }
         return {} as AuthState;
     });
 
     const signIn = useCallback(async ({ email, password }) => {
-        /*
-        const response = await api.post('/api/token', {
-            username: 'admin',
-            password: 'admin',
+        const response = await api.post('/api/token/', {
+            username: email,
+            password,
         });
-        */
-        const response = {
-            data: {
-                user: {
-                    name: 'Bruno',
-                    email: 'bruno@bruno.com',
-                },
-                token: '123456',
-            },
-        };
-
-        const { user, token } = response.data;
-        localStorage.setItem(storageItems.token, token);
-        localStorage.setItem(storageItems.user, JSON.stringify(user));
-        setData({ token, user });
         console.log(response.data);
+
+        const { access: token } = response.data;
+        localStorage.setItem(storageItems.token, token);
+        setData({ token });
     }, []);
 
     const signOut = useCallback(() => {
         localStorage.removeItem(storageItems.token);
-        localStorage.removeItem(storageItems.user);
         setData({} as AuthState);
     }, []);
     return (
-        <AuthContext.Provider value={{ user: data.user, signIn, signOut }}>
+        <AuthContext.Provider value={{ token: data.token, signIn, signOut }}>
             {children}
         </AuthContext.Provider>
     );
