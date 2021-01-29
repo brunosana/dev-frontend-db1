@@ -35,7 +35,9 @@ const AddMusic: React.FC = () => {
                         .required('Duração obrigatória'),
                 });
                 const { nome, duracao } = data;
-                const duracaoValue = parseFloat(duracao.replaceAll(',', '.'));
+                const duracaoValue = parseFloat(
+                    duracao.replaceAll(',', '.').replaceAll(':', '.'),
+                );
                 await schema.validate(
                     { nome, duracao: duracaoValue },
                     {
