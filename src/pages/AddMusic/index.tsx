@@ -25,35 +25,38 @@ const AddMusic: React.FC = () => {
     const formRef = useRef<FormHandles>(null);
     const history = useHistory();
 
-    const handleEditMusic = useCallback(async (data: AddMusicFOrmData) => {
-        try {
-            const schema = Yup.object().shape({
-                nome: Yup.string().required('Nome da música obrigatório'),
-                duracao: Yup.number()
-                    .typeError('Precisa ser um número')
-                    .required('Duração obrigatória'),
-            });
-            const { nome, duracao } = data;
-            const duracaoValue = parseFloat(duracao.replaceAll(',', '.'));
-            await schema.validate(
-                { nome, duracao: duracaoValue },
-                {
-                    abortEarly: false,
-                },
-            );
-            const response = await api.post('/v1/musica/', data);
-            const music = response.data as Response;
-            if (!music.id) {
-                // eslint-disable-next-line
+    const handleEditMusic = useCallback(
+        async (data: AddMusicFOrmData) => {
+            try {
+                const schema = Yup.object().shape({
+                    nome: Yup.string().required('Nome da música obrigatório'),
+                    duracao: Yup.number()
+                        .typeError('Precisa ser um número')
+                        .required('Duração obrigatória'),
+                });
+                const { nome, duracao } = data;
+                const duracaoValue = parseFloat(duracao.replaceAll(',', '.'));
+                await schema.validate(
+                    { nome, duracao: duracaoValue },
+                    {
+                        abortEarly: false,
+                    },
+                );
+                const response = await api.post('/v1/musica/', data);
+                const music = response.data as Response;
+                if (!music.id) {
+                    // eslint-disable-next-line
                 alert('Musica não adicionada');
-            } else {
-                history.push('/home');
+                } else {
+                    history.push('/home');
+                }
+            } catch (err) {
+                const errors = getValidationErrors(err);
+                formRef.current?.setErrors(errors);
             }
-        } catch (err) {
-            const errors = getValidationErrors(err);
-            formRef.current?.setErrors(errors);
-        }
-    }, []);
+        },
+        [history],
+    );
 
     return (
         <>
