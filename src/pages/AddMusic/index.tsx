@@ -9,9 +9,8 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import api from '../../services/api';
 import { Content, Container, Background, FormArea } from './styles';
-import MusicProps from '../../interfaces/music';
 
-interface AddMusicFOrmData {
+interface AddMusicFormData {
     nome: string;
     duracao: string;
 }
@@ -21,7 +20,7 @@ const AddMusic: React.FC = () => {
     const history = useHistory();
 
     const handleEditMusic = useCallback(
-        async (data: AddMusicFOrmData) => {
+        async (data: AddMusicFormData) => {
             try {
                 const schema = Yup.object().shape({
                     nome: Yup.string().required('Nome da música obrigatório'),
@@ -40,11 +39,10 @@ const AddMusic: React.FC = () => {
                     },
                 );
                 const response = await api.post('/v1/musica/', data);
-                if (response.status === 200) {
-                    // eslint-disable-next-line
-                    alert('Musica adicionada');
+                if (response.status === 201) {
                     history.push('/home');
                 } else {
+                    // eslint-disable-next-line
                     alert('Musica não adicionada');
                 }
             } catch (err) {
