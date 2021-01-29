@@ -40,11 +40,10 @@ const AddMusic: React.FC = () => {
                     },
                 );
                 const response = await api.post('/v1/musica/', data);
-                if (response.status === 200) {
-                    // eslint-disable-next-line
-                    alert('Musica adicionada');
+                if (response.status === 201) {
                     history.push('/home');
                 } else {
+                    // eslint-disable-next-line
                     alert('Musica não adicionada');
                 }
             } catch (err) {
