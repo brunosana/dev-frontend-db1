@@ -105,6 +105,21 @@ export const Music = styled.div`
             color: #f56b31;
         }
     }
+    button {
+        background: none;
+        border: 0;
+        margin: 0;
+        padding: 0;
+        margin-left: 10px;
+        text-decoration: none;
+        color: #fff;
+        svg {
+            margin-bottom: 4px;
+        }
+        &:hover {
+            color: #f56b31;
+        }
+    }
 
     @media screen and (max-width: 790px) {
         #musicDuration {

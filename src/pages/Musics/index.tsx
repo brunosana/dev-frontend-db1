@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import {
     AiOutlineClockCircle,
     AiOutlineDelete,
@@ -22,12 +22,29 @@ const Musics: React.FC = () => {
         [] as MusicProps[],
     );
 
-    useEffect(() => {
+    const handleDeleteMusic = useCallback((id: number) => {
+        api.delete(`/v1/musica/${id}/`).then(response => {
+            if (response.status === 204) {
+                // eslint-disable-next-line
+                alert('Musica excluída');
+                loadMusics();
+            } else {
+                // eslint-disable-next-line
+                alert('Musica não foi excluída');
+            }
+        });
+    }, []);
+
+    const loadMusics = useCallback(() => {
         api.get('/v1/musica/').then(response => {
             const data = response.data as MusicProps[];
             if (data.length > 0) setMusicsResponse(data);
         });
     }, []);
+
+    useEffect(() => {
+        loadMusics();
+    }, [loadMusics]);
 
     return (
         <>
@@ -58,9 +75,15 @@ const Musics: React.FC = () => {
                                 <a id="musicEdit" href="brunosana.com.br">
                                     <AiOutlineEdit size={18} />
                                 </a>
-                                <a id="musicDelete" href="brunosana.com.br">
+                                <button
+                                    type="button"
+                                    id="musicDelete"
+                                    onClick={() =>
+                                        // eslint-disable-next-line
+                                        handleDeleteMusic(musicItem.id)}
+                                >
                                     <AiOutlineDelete size={18} />
-                                </a>
+                                </button>
                             </Music>
                         ))}
                 </MusicList>
