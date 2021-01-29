@@ -9,16 +9,11 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import api from '../../services/api';
 import { Content, Container, Background, FormArea } from './styles';
+import MusicProps from '../../interfaces/music';
 
 interface AddMusicFOrmData {
     nome: string;
     duracao: string;
-}
-
-interface Response {
-    id: number;
-    nome: string;
-    duracao: number;
 }
 
 const AddMusic: React.FC = () => {
@@ -45,12 +40,12 @@ const AddMusic: React.FC = () => {
                     },
                 );
                 const response = await api.post('/v1/musica/', data);
-                const music = response.data as Response;
-                if (!music.id) {
+                if (response.status === 200) {
                     // eslint-disable-next-line
-                alert('Musica não adicionada');
-                } else {
+                    alert('Musica adicionada');
                     history.push('/home');
+                } else {
+                    alert('Musica não adicionada');
                 }
             } catch (err) {
                 const errors = getValidationErrors(err);
