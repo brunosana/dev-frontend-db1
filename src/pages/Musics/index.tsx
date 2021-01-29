@@ -10,12 +10,7 @@ import Foot from '../../components/Foot';
 import Logo from '../../assets/logo-only.svg';
 import api from '../../services/api';
 import { Container, Image, MusicList, MusicListTitle, Music } from './styles';
-
-interface MusicProps {
-    id: number;
-    nome: string;
-    duracao: number;
-}
+import MusicProps from '../../interfaces/music';
 
 const Musics: React.FC = () => {
     const [MusicsResponse, setMusicsResponse] = useState<MusicProps[]>(
@@ -72,9 +67,12 @@ const Musics: React.FC = () => {
                                         .toString()
                                         .replaceAll('.', ':')}
                                 </div>
-                                <a id="musicEdit" href="brunosana.com.br">
+                                <Link
+                                    id="musicEdit"
+                                    to={`/editmusic/${musicItem.id}/${musicItem.nome}/${musicItem.duracao}`}
+                                >
                                     <AiOutlineEdit size={18} />
-                                </a>
+                                </Link>
                                 <button
                                     type="button"
                                     id="musicDelete"
