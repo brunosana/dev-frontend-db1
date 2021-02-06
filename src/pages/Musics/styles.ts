@@ -121,6 +121,10 @@ export const Music = styled.div`
         }
     }
 
+    &:last-of-type {
+        margin-bottom: 15px;
+    }
+
     @media screen and (max-width: 790px) {
         #musicDuration {
             width: 8vw;
