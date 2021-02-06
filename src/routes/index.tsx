@@ -7,6 +7,7 @@ import Login from '../pages/Login';
 import SignUp from '../pages/SignUp';
 import Musics from '../pages/Musics';
 import AddMusic from '../pages/AddMusic';
+import AddArtist from '../pages/AddArtist';
 import EditMusic from '../pages/EditMusic';
 
 const Routes: React.FC = () => (
@@ -16,6 +17,7 @@ const Routes: React.FC = () => (
 
         <Route path="/home" component={Musics} isPrivate />
         <Route path="/addmusic" component={AddMusic} isPrivate />
+        <Route path="/addartist" component={AddArtist} isPrivate />
         <Route
             path="/editmusic/:id/:nome/:duracao"
             component={EditMusic}
