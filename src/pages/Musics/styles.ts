@@ -4,7 +4,7 @@ export const Container = styled.div`
     width: 100vw;
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
+    margin: 0 0;
     margin-top: 35px;
     align-items: center;
     justify-content: center;
@@ -18,6 +18,7 @@ export const Image = styled.div`
 `;
 
 export const MusicList = styled.div`
+    overflow: hidden;
     width: 100%;
     max-width: 1200px;
     margin-left: 20px;
@@ -32,9 +33,8 @@ export const MusicListTitle = styled.div`
     font-weight: bold;
     margin-bottom: 3px;
     border-bottom: 2px solid #444444;
-    width: 100%;
     #id {
-        width: 9vw;
+        width: 5vw;
     }
 
     #name {
@@ -83,7 +83,7 @@ export const Music = styled.div`
     margin-top: 7px;
 
     #musicID {
-        width: 9vw;
+        width: 5vw;
         text-overflow: ellipsis;
         overflow: hidden;
     }
@@ -121,6 +121,10 @@ export const Music = styled.div`
         }
     }
 
+    &:last-of-type {
+        margin-bottom: 15px;
+    }
+
     @media screen and (max-width: 790px) {
         #musicDuration {
             width: 8vw;
@@ -136,7 +140,7 @@ export const Music = styled.div`
     }
     @media screen and (max-width: 400px) {
         #musicName {
-            width: 48vw;
+            width: 45vw;
         }
         #musicDuration {
             width: 12vw;

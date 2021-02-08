@@ -46,7 +46,7 @@ export const Container = styled.div<showSideBar>`
 
 export const Content = styled.div`
     width: 100%;
-    max-width: 1200px;
+    max-width: 1200px !important;
     margin: 0 20px;
     display: flex;
     align-items: center;
@@ -54,12 +54,58 @@ export const Content = styled.div`
     a {
         text-decoration: none;
         color: #fff;
+        margin-right: 22px;
         &:hover {
             color: ${shade(0.2, '#fff')};
         }
     }
     a + a {
         margin-left: 20px;
+    }
+
+    #dropbtn {
+        background-color: transparent;
+        text-decoration: none;
+        color: #fff;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+    #dropdown {
+        position: relative;
+        display: inline-block;
+        background: none;
+    }
+
+    #dropdown-content {
+        display: none;
+        position: absolute;
+        color: #fff;
+        background-color: #414141;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    #dropdown-content a {
+        color: #fff;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    #dropdown-content a:hover {
+        background-color: #5f5f5f;
+    }
+
+    #dropdown:hover #dropdown-content {
+        display: block;
+    }
+
+    #dropdown:hover #dropbtn {
+        font-weight: bold;
     }
 
     #navVertical {
@@ -76,7 +122,7 @@ export const Content = styled.div`
         }
     }
 
-    @media screen and (max-width: 810px) {
+    @media screen and (max-width: 915px) {
         #navHorizontal {
             display: none;
         }

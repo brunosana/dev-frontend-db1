@@ -28,8 +28,12 @@ const Header: React.FC = () => {
     return (
         <Container showSideBar={showSideBar}>
             <div id="sideBar">
-                <Link to="/home">Home</Link>
+                <Link id="home" to="/home">
+                    Home
+                </Link>
                 <Link to="/addmusic">Add Music</Link>
+                <Link to="/addartist">Add Artist</Link>
+                <Link to="/addlistener">Add Listener</Link>
                 <LogoutMobile onClick={handleSignOut}>
                     <AiOutlinePoweroff />
                     <i>logout</i>
@@ -37,8 +41,26 @@ const Header: React.FC = () => {
             </div>
             <Content>
                 <nav id="navHorizontal">
-                    <Link to="/home">Home</Link>
-                    <Link to="/addmusic">Add Music</Link>
+                    <div id="dropdown">
+                        <button type="button" id="dropbtn">
+                            Add
+                        </button>
+                        <div id="dropdown-content">
+                            <Link to="/addmusic">Add Music</Link>
+                            <Link to="/addartist">Add Artist</Link>
+                            <Link to="/addlistener">Add Listener</Link>
+                        </div>
+                    </div>
+                    <div id="dropdown">
+                        <button type="button" id="dropbtn">
+                            List
+                        </button>
+                        <div id="dropdown-content">
+                            <Link to="/home">Musics</Link>
+                            <Link to="/artists">Artists</Link>
+                            <Link to="/listeners">Listeners</Link>
+                        </div>
+                    </div>
                 </nav>
                 <button
                     type="button"
@@ -51,6 +73,8 @@ const Header: React.FC = () => {
                         <AiOutlineBars size={25} />
                     )}
                 </button>
+                {/**
+                     *
                 <Search>
                     <AiOutlineSearch size={35} />
                     <input
@@ -58,6 +82,7 @@ const Header: React.FC = () => {
                         placeholder="Search for any music here..."
                     />
                 </Search>
+                     */}
                 <Logout onClick={handleSignOut}>
                     <AiOutlinePoweroff />
                     <i id="logoutText">logout</i>
