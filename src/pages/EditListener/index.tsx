@@ -1,28 +1,29 @@
 import React, { useRef, useCallback } from 'react';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
+import { useRouteMatch, useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
-import { useHistory } from 'react-router-dom';
-import getValidationErrors from '../../utils/getValidationErrors';
 import Header from '../../components/Header';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import api from '../../services/api';
 import { Content, Container, Background, FormArea } from './styles';
+import getValidationErrors from '../../utils/getValidationErrors';
+import api from '../../services/api';
 
-interface AddListenerFormData {
+interface ListenerProps {
+    id: string;
     phone: string;
     primeiro_nome: string;
     sobrenome: string;
-    user_email: string;
+    user: string;
 }
 
-const AddListener: React.FC = () => {
+const EditListener: React.FC = () => {
     const formRef = useRef<FormHandles>(null);
     const history = useHistory();
-
-    const handleEditMusic = useCallback(
-        async (data: AddListenerFormData) => {
+    const { params } = useRouteMatch<ListenerProps>();
+    const handleSubmit = useCallback(
+        async (data: ListenerProps) => {
             try {
                 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
                 const schema = Yup.object().shape({
@@ -35,30 +36,36 @@ const AddListener: React.FC = () => {
                     sobrenome: Yup.string().required(
                         'Sobrenome Nome obrigatório',
                     ),
-                    user_email: Yup.string().required('Email obrigatório'),
+                    user: Yup.string().required('Email obrigatório'),
                 });
-                const { phone, primeiro_nome, sobrenome, user_email } = data;
+                const { phone, primeiro_nome, sobrenome, user } = data;
                 await schema.validate(
-                    { phone, primeiro_nome, sobrenome, user_email },
+                    { phone, primeiro_nome, sobrenome, user },
                     {
                         abortEarly: false,
                     },
                 );
-                const response = await api.post('/v1/ouvinte/', data);
-                if (response.status === 201) {
+                const response = await api.put(`/v1/ouvinte/${params.id}/`, {
+                    phone,
+                    primeiro_nome,
+                    sobrenome,
+                    user_email: user,
+                });
+                if (response.status === 200) {
+                    // eslint-disable-next-line
+                    alert("Ouvinte alterado!");
                     history.push('/listeners');
                 } else {
                     // eslint-disable-next-line
-                    alert('Ouvinte não adicionado');
+                    alert("Ouvinte não alterado! Tente novamente");
                 }
             } catch (err) {
                 const errors = getValidationErrors(err);
                 formRef.current?.setErrors(errors);
             }
         },
-        [history],
+        [params.id, history],
     );
-
     return (
         <>
             <Header />
@@ -66,33 +73,41 @@ const AddListener: React.FC = () => {
                 <Background />
                 <Container>
                     <FormArea>
-                        <div>Add Listener</div>
-                        <Form ref={formRef} onSubmit={handleEditMusic}>
+                        <div>Edit Artist</div>
+                        <Form
+                            key={params.id}
+                            onSubmit={handleSubmit}
+                            ref={formRef}
+                        >
                             <Input
                                 type="text"
                                 name="phone"
                                 id="phone"
-                                placeholder="Phone..."
+                                placeholder="Name..."
+                                defaultValue={params.phone}
                             />
                             <Input
                                 type="text"
                                 name="primeiro_nome"
                                 id="primeiro_nome"
-                                placeholder="First Name..."
+                                placeholder="Biography..."
+                                defaultValue={params.primeiro_nome}
                             />
                             <Input
                                 type="text"
                                 name="sobrenome"
                                 id="sobrenome"
-                                placeholder="Last name..."
+                                placeholder="Formation Year..."
+                                defaultValue={params.sobrenome}
                             />
                             <Input
                                 type="text"
-                                name="user_email"
-                                id="user_email"
-                                placeholder="User email..."
+                                name="user"
+                                id="user"
+                                placeholder="User..."
+                                defaultValue={params.user}
                             />
-                            <Button type="submit">Enviar</Button>
+                            <Button type="submit">Editar</Button>
                         </Form>
                     </FormArea>
                 </Container>
@@ -101,4 +116,4 @@ const AddListener: React.FC = () => {
     );
 };
 
-export default AddListener;
+export default EditListener;
