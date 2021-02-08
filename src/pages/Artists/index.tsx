@@ -68,7 +68,7 @@ const Artists: React.FC = () => {
                                 <td id="editCell">
                                     <Link
                                         id="artistEdit"
-                                        to={`/artistedit${artistItem.id}`}
+                                        to={`/editartist/${artistItem.id}/${artistItem.stage_name}/${artistItem.biography}/${artistItem.formation_year}/${artistItem.user}`}
                                     >
                                         <AiOutlineEdit size={18} />
                                     </Link>
