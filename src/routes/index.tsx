@@ -5,10 +5,14 @@ import Route from './Route';
 
 import Login from '../pages/Login';
 import SignUp from '../pages/SignUp';
+
 import Musics from '../pages/Musics';
+import Artists from '../pages/Artists';
+
 import AddMusic from '../pages/AddMusic';
 import AddArtist from '../pages/AddArtist';
 import AddListener from '../pages/AddListener';
+
 import EditMusic from '../pages/EditMusic';
 
 const Routes: React.FC = () => (
@@ -17,6 +21,8 @@ const Routes: React.FC = () => (
         <Route path="/signup" component={SignUp} />
 
         <Route path="/home" component={Musics} isPrivate />
+        <Route path="/artists" component={Artists} isPrivate />
+
         <Route path="/addmusic" component={AddMusic} isPrivate />
         <Route path="/addartist" component={AddArtist} isPrivate />
         <Route path="/addlistener" component={AddListener} isPrivate />
