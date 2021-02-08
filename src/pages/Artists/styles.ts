@@ -18,12 +18,12 @@ export const Image = styled.div`
 `;
 
 export const Table = styled.table`
-    width: 100%;
+    box-sizing: border-box;
+    width: 100% !important;
     max-width: 1200px;
     margin: 4px 15px;
     align-items: center;
     text-align: left;
-
     #TableHead {
         margin-bottom: 3px;
         border-bottom: 2px solid #444444;
@@ -49,5 +49,22 @@ export const Table = styled.table`
         &:hover {
             color: #f56b31;
         }
+    }
+    td {
+        &:last-of-type {
+            margin-bottom: 15px;
+        }
+    }
+    td,
+    th {
+        white-space: normal;
+        word-wrap: break-word;
+    }
+
+    @media screen and (max-width: 520px) {
+        font-size: 11px;
+    }
+    @media screen and (max-width: 470px) {
+        font-size: 8px;
     }
 `;

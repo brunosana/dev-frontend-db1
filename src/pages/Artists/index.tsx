@@ -65,7 +65,7 @@ const Artists: React.FC = () => {
                                 <td>{artistItem.biography}</td>
                                 <td>{artistItem.formation_year}</td>
                                 <td>{artistItem.user}</td>
-                                <td>
+                                <td id="editCell">
                                     <Link
                                         id="artistEdit"
                                         to={`/artistedit${artistItem.id}`}
