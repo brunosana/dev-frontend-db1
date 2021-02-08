@@ -16,6 +16,7 @@ import AddListener from '../pages/AddListener';
 
 import EditMusic from '../pages/EditMusic';
 import EditArtist from '../pages/EditArtist';
+import EditListener from '../pages/EditListener';
 
 const Routes: React.FC = () => (
     <Switch>
@@ -37,6 +38,11 @@ const Routes: React.FC = () => (
         <Route
             path="/editartist/:id/:stage_name/:biography/:formation_year/:user"
             component={EditArtist}
+            isPrivate
+        />
+        <Route
+            path="/editlistener/:id/:phone/:primeiro_nome/:sobrenome/:user"
+            component={EditListener}
             isPrivate
         />
     </Switch>
