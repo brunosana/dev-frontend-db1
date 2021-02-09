@@ -10,48 +10,50 @@ import { Content, Container, Background, FormArea } from './styles';
 import getValidationErrors from '../../utils/getValidationErrors';
 import api from '../../services/api';
 
-interface Follower {
+interface Like {
     id: string;
     ouvinte: string;
-    artista: string;
+    musica: string;
 }
 
-interface MusicEditProps {
+interface LikeEdit {
     ouvinte_email: string;
-    artista_email: string;
+    musica: string;
 }
 
-const EditFollow: React.FC = () => {
+const EditLike: React.FC = () => {
     const formRef = useRef<FormHandles>(null);
     const history = useHistory();
-    const { params } = useRouteMatch<Follower>();
+    const { params } = useRouteMatch<Like>();
     const handleSubmit = useCallback(
-        async (data: MusicEditProps) => {
+        async (data: LikeEdit) => {
             try {
                 const schema = Yup.object().shape({
                     ouvinte_email: Yup.string().required('Ouvinte necessário'),
-                    artista_email: Yup.string().required('Artista necessário'),
+                    musica: Yup.number()
+                        .typeError('Precisa ser um número')
+                        .required('Id obrigatório'),
                 });
-                const { ouvinte_email, artista_email } = data;
+                const { ouvinte_email, musica } = data;
                 await schema.validate(data, {
                     abortEarly: false,
                 });
                 try {
-                    const response = await api.put(`/v1/segue/${params.id}/`, {
+                    const response = await api.put(`/v1/curte/${params.id}/`, {
                         ouvinte_email,
-                        artista_email,
+                        musica,
                     });
                     if (response.status === 200) {
                         // eslint-disable-next-line
-                        alert("Follow alterado!");
-                        history.push('/follows');
+                        alert("Curtir alterado!");
+                        history.push('/likes');
                     } else {
                         // eslint-disable-next-line
-                        alert("Follow não alterado! Tente novamente");
+                        alert("Curtir não alterado! Tente novamente");
                     }
                 } catch (err) {
                     // eslint-disable-next-line
-                    alert("Follow não alterado! Tente novamente");
+                    alert("Curtir não alterado! Tente novamente");
                 }
             } catch (err) {
                 const errors = getValidationErrors(err);
@@ -75,17 +77,17 @@ const EditFollow: React.FC = () => {
                         >
                             <Input
                                 type="text"
-                                name="artista_email"
-                                id="artista_email"
-                                placeholder="Artist email..."
-                                defaultValue={params.artista}
-                            />
-                            <Input
-                                type="text"
                                 name="ouvinte_email"
                                 id="ouvinte_email"
                                 placeholder="Listener email..."
                                 defaultValue={params.ouvinte}
+                            />
+                            <Input
+                                type="text"
+                                name="musica"
+                                id="musica"
+                                placeholder="Music id..."
+                                defaultValue={params.musica}
                             />
                             <Button type="submit">Editar</Button>
                         </Form>
@@ -96,4 +98,4 @@ const EditFollow: React.FC = () => {
     );
 };
 
-export default EditFollow;
+export default EditLike;
