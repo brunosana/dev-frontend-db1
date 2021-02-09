@@ -19,13 +19,8 @@ const AddMusic: React.FC = () => {
     const formRef = useRef<FormHandles>(null);
     const history = useHistory();
 
-<<<<<<< HEAD
-    const handleEditMusic = useCallback(
-        async (data: AddMusicFormData) => {
-=======
     const handleAddMusic = useCallback(
-        async (data: AddMusicFOrmData) => {
->>>>>>> bd79a1b3e7730d4517d0b419978882e94cfca628
+        async (data: AddMusicFormData) => {
             try {
                 const schema = Yup.object().shape({
                     nome: Yup.string().required('Nome da música obrigatório'),
