@@ -23,12 +23,8 @@ const AddFollow: React.FC = () => {
         async (data: AddFollowFOrmData) => {
             try {
                 const schema = Yup.object().shape({
-                    ouvinte_email: Yup.string().required(
-                        'Nome da música obrigatório',
-                    ),
-                    artista_email: Yup.string().required(
-                        'Nome da música obrigatório',
-                    ),
+                    ouvinte_email: Yup.string().required('Ouvinte obrigatório'),
+                    artista_email: Yup.string().required('Artista obrigatório'),
                 });
                 const { ouvinte_email, artista_email } = data;
                 await schema.validate(
