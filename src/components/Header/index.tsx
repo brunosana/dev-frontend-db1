@@ -50,9 +50,6 @@ const Header: React.FC = () => {
                             Add
                         </button>
                         <div id="dropdown-content">
-                            <Link to="/home">Musics</Link>
-                            <Link to="/artists">Artists</Link>
-                            <Link to="/listeners">Listeners</Link>
                             <Link to="/addmusic">Add Music</Link>
                             <Link to="/addartist">Add Artist</Link>
                             <Link to="/addlistener">Add Listener</Link>
