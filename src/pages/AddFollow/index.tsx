@@ -10,45 +10,40 @@ import Button from '../../components/Button';
 import api from '../../services/api';
 import { Content, Container, Background, FormArea } from './styles';
 
-interface AddMusicFormData {
-    nome: string;
-    duracao: string;
+interface AddFollowFOrmData {
+    ouvinte_email: string;
+    artista_email: string;
 }
 
-const AddMusic: React.FC = () => {
+const AddFollow: React.FC = () => {
     const formRef = useRef<FormHandles>(null);
     const history = useHistory();
 
-<<<<<<< HEAD
-    const handleEditMusic = useCallback(
-        async (data: AddMusicFormData) => {
-=======
-    const handleAddMusic = useCallback(
-        async (data: AddMusicFOrmData) => {
->>>>>>> bd79a1b3e7730d4517d0b419978882e94cfca628
+    const handleAddFollow = useCallback(
+        async (data: AddFollowFOrmData) => {
             try {
                 const schema = Yup.object().shape({
-                    nome: Yup.string().required('Nome da música obrigatório'),
-                    duracao: Yup.number()
-                        .typeError('Precisa ser um número')
-                        .required('Duração obrigatória'),
+                    ouvinte_email: Yup.string().required('Ouvinte obrigatório'),
+                    artista_email: Yup.string().required('Artista obrigatório'),
                 });
-                const { nome, duracao } = data;
-                const duracaoValue = parseFloat(
-                    duracao.replaceAll(',', '.').replaceAll(':', '.'),
-                );
+                const { ouvinte_email, artista_email } = data;
                 await schema.validate(
-                    { nome, duracao: duracaoValue },
+                    { ouvinte_email, artista_email },
                     {
                         abortEarly: false,
                     },
                 );
-                const response = await api.post('/v1/musica/', data);
-                if (response.status === 201) {
-                    history.push('/home');
-                } else {
+                try {
+                    const response = await api.post('/v1/segue/', data);
+                    if (response.status === 201) {
+                        history.push('/home');
+                    } else {
+                        // eslint-disable-next-line
+                        alert('Follow não adicionada');
+                    }
+                } catch (err) {
                     // eslint-disable-next-line
-                    alert('Musica não adicionada');
+                    alert('Follow não adicionado');
                 }
             } catch (err) {
                 const errors = getValidationErrors(err);
@@ -65,19 +60,19 @@ const AddMusic: React.FC = () => {
                 <Background />
                 <Container>
                     <FormArea>
-                        <div>Add Music</div>
-                        <Form ref={formRef} onSubmit={handleAddMusic}>
+                        <div>Add Follow</div>
+                        <Form ref={formRef} onSubmit={handleAddFollow}>
                             <Input
                                 type="text"
-                                name="nome"
-                                id="name"
-                                placeholder="Music name..."
+                                name="ouvinte_email"
+                                id="ouvinte_email"
+                                placeholder="Listener email..."
                             />
                             <Input
                                 type="text"
-                                name="duracao"
-                                id="duration"
-                                placeholder="Music duration..."
+                                name="artista_email"
+                                id="artista_email"
+                                placeholder="Artist email..."
                             />
                             <Button type="submit">Enviar</Button>
                         </Form>
@@ -88,4 +83,4 @@ const AddMusic: React.FC = () => {
     );
 };
 
-export default AddMusic;
+export default AddFollow;

@@ -31,9 +31,18 @@ const Header: React.FC = () => {
                 <Link id="home" to="/home">
                     Home
                 </Link>
+                <Link to="/home">Musics</Link>
+                <Link to="/artists">Artists</Link>
+                <Link to="/listeners">Listeners</Link>
+                <Link to="/follows">Follows</Link>
+                <Link to="/likes">Likes</Link>
+                <Link to="/records">Records</Link>
                 <Link to="/addmusic">Add Music</Link>
                 <Link to="/addartist">Add Artist</Link>
                 <Link to="/addlistener">Add Listener</Link>
+                <Link to="/addfollow">Add Follow</Link>
+                <Link to="/addlike">Add Like</Link>
+                <Link to="/addrecord">Add Record</Link>
                 <LogoutMobile onClick={handleSignOut}>
                     <AiOutlinePoweroff />
                     <i>logout</i>
@@ -49,6 +58,9 @@ const Header: React.FC = () => {
                             <Link to="/addmusic">Add Music</Link>
                             <Link to="/addartist">Add Artist</Link>
                             <Link to="/addlistener">Add Listener</Link>
+                            <Link to="/addfollow">Add Follow</Link>
+                            <Link to="/addlike">Add Like</Link>
+                            <Link to="/addrecord">Add Record</Link>
                         </div>
                     </div>
                     <div id="dropdown">
@@ -59,6 +71,9 @@ const Header: React.FC = () => {
                             <Link to="/home">Musics</Link>
                             <Link to="/artists">Artists</Link>
                             <Link to="/listeners">Listeners</Link>
+                            <Link to="/follows">Follows</Link>
+                            <Link to="/likes">Likes</Link>
+                            <Link to="/records">Records</Link>
                         </div>
                     </div>
                 </nav>

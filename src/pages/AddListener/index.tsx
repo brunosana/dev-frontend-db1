@@ -21,7 +21,7 @@ const AddListener: React.FC = () => {
     const formRef = useRef<FormHandles>(null);
     const history = useHistory();
 
-    const handleEditMusic = useCallback(
+    const handleAddListener = useCallback(
         async (data: AddListenerFormData) => {
             try {
                 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -44,10 +44,15 @@ const AddListener: React.FC = () => {
                         abortEarly: false,
                     },
                 );
-                const response = await api.post('/v1/ouvinte/', data);
-                if (response.status === 201) {
-                    history.push('/listeners');
-                } else {
+                try {
+                    const response = await api.post('/v1/ouvinte/', data);
+                    if (response.status === 201) {
+                        history.push('/listeners');
+                    } else {
+                        // eslint-disable-next-line
+                        alert('Ouvinte não adicionado');
+                    }
+                } catch (err) {
                     // eslint-disable-next-line
                     alert('Ouvinte não adicionado');
                 }
@@ -67,7 +72,7 @@ const AddListener: React.FC = () => {
                 <Container>
                     <FormArea>
                         <div>Add Listener</div>
-                        <Form ref={formRef} onSubmit={handleEditMusic}>
+                        <Form ref={formRef} onSubmit={handleAddListener}>
                             <Input
                                 type="text"
                                 name="phone"

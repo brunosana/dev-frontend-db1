@@ -10,45 +10,47 @@ import Button from '../../components/Button';
 import api from '../../services/api';
 import { Content, Container, Background, FormArea } from './styles';
 
-interface AddMusicFormData {
-    nome: string;
-    duracao: string;
+interface AddLikeFOrmData {
+    ouvinte_email: string;
+    musica: string;
 }
 
-const AddMusic: React.FC = () => {
+const AddLike: React.FC = () => {
     const formRef = useRef<FormHandles>(null);
     const history = useHistory();
 
-<<<<<<< HEAD
-    const handleEditMusic = useCallback(
-        async (data: AddMusicFormData) => {
-=======
-    const handleAddMusic = useCallback(
-        async (data: AddMusicFOrmData) => {
->>>>>>> bd79a1b3e7730d4517d0b419978882e94cfca628
+    const handleAddLike = useCallback(
+        async (data: AddLikeFOrmData) => {
             try {
                 const schema = Yup.object().shape({
-                    nome: Yup.string().required('Nome da música obrigatório'),
-                    duracao: Yup.number()
+                    ouvinte_email: Yup.string().required(
+                        'Email do ouvinte obrigatório',
+                    ),
+                    musica: Yup.number()
                         .typeError('Precisa ser um número')
-                        .required('Duração obrigatória'),
+                        .required('Id obrigatório'),
                 });
-                const { nome, duracao } = data;
-                const duracaoValue = parseFloat(
-                    duracao.replaceAll(',', '.').replaceAll(':', '.'),
+                const { ouvinte_email, musica } = data;
+                const musicaValue = parseFloat(
+                    musica.replaceAll(',', '.').replaceAll(':', '.'),
                 );
                 await schema.validate(
-                    { nome, duracao: duracaoValue },
+                    { ouvinte_email, musica: musicaValue },
                     {
                         abortEarly: false,
                     },
                 );
-                const response = await api.post('/v1/musica/', data);
-                if (response.status === 201) {
-                    history.push('/home');
-                } else {
+                try {
+                    const response = await api.post('/v1/curte/', data);
+                    if (response.status === 201) {
+                        history.push('/likes');
+                    } else {
+                        // eslint-disable-next-line
+                        alert('Curtir não adicionado');
+                    }
+                } catch (err) {
                     // eslint-disable-next-line
-                    alert('Musica não adicionada');
+                    alert('Curtir não adicionado');
                 }
             } catch (err) {
                 const errors = getValidationErrors(err);
@@ -65,19 +67,19 @@ const AddMusic: React.FC = () => {
                 <Background />
                 <Container>
                     <FormArea>
-                        <div>Add Music</div>
-                        <Form ref={formRef} onSubmit={handleAddMusic}>
+                        <div>Add Like</div>
+                        <Form ref={formRef} onSubmit={handleAddLike}>
                             <Input
                                 type="text"
-                                name="nome"
-                                id="name"
-                                placeholder="Music name..."
+                                name="ouvinte_email"
+                                id="ouvinte_email"
+                                placeholder="Listener email..."
                             />
                             <Input
                                 type="text"
-                                name="duracao"
-                                id="duration"
-                                placeholder="Music duration..."
+                                name="musica"
+                                id="musica"
+                                placeholder="Music id..."
                             />
                             <Button type="submit">Enviar</Button>
                         </Form>
@@ -88,4 +90,4 @@ const AddMusic: React.FC = () => {
     );
 };
 
-export default AddMusic;
+export default AddLike;

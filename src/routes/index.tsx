@@ -9,15 +9,23 @@ import SignUp from '../pages/SignUp';
 import Musics from '../pages/Musics';
 import Artists from '../pages/Artists';
 import Listeners from '../pages/Listeners';
+import Follows from '../pages/Follows';
+import Likes from '../pages/Likes';
+import Records from '../pages/Records';
 
 import AddMusic from '../pages/AddMusic';
 import AddArtist from '../pages/AddArtist';
 import AddListener from '../pages/AddListener';
+import AddFollow from '../pages/AddFollow';
+import AddLike from '../pages/AddLike';
+import AddRecord from '../pages/AddRecord';
 
 import EditMusic from '../pages/EditMusic';
-// eslint-disable-next-line
 import EditArtist from '../pages/EditArtist';
 import EditListener from '../pages/EditListener';
+import EditFollow from '../pages/EditFollow';
+import EditLike from '../pages/EditLike';
+import EditRecord from '../pages/EditRecord';
 
 const Routes: React.FC = () => (
     <Switch>
@@ -27,10 +35,17 @@ const Routes: React.FC = () => (
         <Route path="/home" component={Musics} isPrivate />
         <Route path="/artists" component={Artists} isPrivate />
         <Route path="/listeners" component={Listeners} isPrivate />
+        <Route path="/follows" component={Follows} isPrivate />
+        <Route path="/likes" component={Likes} isPrivate />
+        <Route path="/records" component={Records} isPrivate />
 
         <Route path="/addmusic" component={AddMusic} isPrivate />
         <Route path="/addartist" component={AddArtist} isPrivate />
         <Route path="/addlistener" component={AddListener} isPrivate />
+        <Route path="/addfollow" component={AddFollow} isPrivate />
+        <Route path="/addlike" component={AddLike} isPrivate />
+        <Route path="/addrecord" component={AddRecord} isPrivate />
+
         <Route
             path="/editmusic/:id/:nome/:duracao"
             component={EditMusic}
@@ -44,6 +59,21 @@ const Routes: React.FC = () => (
         <Route
             path="/editlistener/:id/:phone/:primeiro_nome/:sobrenome/:user"
             component={EditListener}
+            isPrivate
+        />
+        <Route
+            path="/editfollow/:id/:artista/:ouvinte"
+            component={EditFollow}
+            isPrivate
+        />
+        <Route
+            path="/editlike/:id/:ouvinte/:musica"
+            component={EditLike}
+            isPrivate
+        />
+        <Route
+            path="/editrecord/:id/:artista/:musica"
+            component={EditRecord}
             isPrivate
         />
     </Switch>
