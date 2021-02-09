@@ -25,6 +25,7 @@ import EditArtist from '../pages/EditArtist';
 import EditListener from '../pages/EditListener';
 import EditFollow from '../pages/EditFollow';
 import EditLike from '../pages/EditLike';
+import EditRecord from '../pages/EditRecord';
 
 const Routes: React.FC = () => (
     <Switch>
@@ -68,6 +69,11 @@ const Routes: React.FC = () => (
         <Route
             path="/editlike/:id/:ouvinte/:musica"
             component={EditLike}
+            isPrivate
+        />
+        <Route
+            path="/editrecord/:id/:artista/:musica"
+            component={EditRecord}
             isPrivate
         />
     </Switch>
