@@ -20,7 +20,7 @@ const AddMusic: React.FC = () => {
     const formRef = useRef<FormHandles>(null);
     const history = useHistory();
 
-    const handleEditMusic = useCallback(
+    const handleAddMusic = useCallback(
         async (data: AddMusicFOrmData) => {
             try {
                 const schema = Yup.object().shape({
@@ -62,7 +62,7 @@ const AddMusic: React.FC = () => {
                 <Container>
                     <FormArea>
                         <div>Add Music</div>
-                        <Form ref={formRef} onSubmit={handleEditMusic}>
+                        <Form ref={formRef} onSubmit={handleAddMusic}>
                             <Input
                                 type="text"
                                 name="nome"

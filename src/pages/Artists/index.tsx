@@ -17,25 +17,27 @@ const Artists: React.FC = () => {
         [] as Artist[],
     );
 
-    const handleDeleteArtist = useCallback((id: number) => {
-        api.delete(`/v1/artista/${id}/`).then(response => {
-            if (response.status === 204) {
-                // eslint-disable-next-line
-                alert('Artista excluído');
-                loadArtists();
-            } else {
-                // eslint-disable-next-line
-                alert('Artista não foi excluído');
-            }
-        });
-    }, []);
-
     const loadArtists = useCallback(() => {
         api.get('/v1/artista/').then(response => {
             const data = response.data as Artist[];
             if (data.length > 0) setArtistsResponse(data);
         });
     }, []);
+    const handleDeleteArtist = useCallback(
+        (id: number) => {
+            api.delete(`/v1/artista/${id}/`).then(response => {
+                if (response.status === 204) {
+                    // eslint-disable-next-line
+                alert('Artista excluído');
+                    loadArtists();
+                } else {
+                    // eslint-disable-next-line
+                alert('Artista não foi excluído');
+                }
+            });
+        },
+        [loadArtists],
+    );
 
     useEffect(() => {
         loadArtists();

@@ -36,15 +36,20 @@ const EditFollow: React.FC = () => {
                 await schema.validate(data, {
                     abortEarly: false,
                 });
-                const response = await api.put(`/v1/segue/${params.id}/`, {
-                    ouvinte_email,
-                    artista_email,
-                });
-                if (response.status === 200) {
-                    // eslint-disable-next-line
-                    alert("Follow alterado!");
-                    history.push('/follows');
-                } else {
+                try {
+                    const response = await api.put(`/v1/segue/${params.id}/`, {
+                        ouvinte_email,
+                        artista_email,
+                    });
+                    if (response.status === 200) {
+                        // eslint-disable-next-line
+                        alert("Follow alterado!");
+                        history.push('/follows');
+                    } else {
+                        // eslint-disable-next-line
+                        alert("Follow não alterado! Tente novamente");
+                    }
+                } catch (err) {
                     // eslint-disable-next-line
                     alert("Follow não alterado! Tente novamente");
                 }

@@ -49,17 +49,25 @@ const EditArtist: React.FC = () => {
                         abortEarly: false,
                     },
                 );
-                const response = await api.put(`/v1/artista/${params.id}/`, {
-                    stage_name,
-                    biography,
-                    formation_year,
-                    user_email: user,
-                });
-                if (response.status === 200) {
-                    // eslint-disable-next-line
-                    alert("Artista alterado!");
-                    history.push('/artists');
-                } else {
+                try {
+                    const response = await api.put(
+                        `/v1/artista/${params.id}/`,
+                        {
+                            stage_name,
+                            biography,
+                            formation_year,
+                            user_email: user,
+                        },
+                    );
+                    if (response.status === 200) {
+                        // eslint-disable-next-line
+                        alert("Artista alterado!");
+                        history.push('/artists');
+                    } else {
+                        // eslint-disable-next-line
+                        alert("Artista não alterado! Tente novamente");
+                    }
+                } catch (err) {
                     // eslint-disable-next-line
                     alert("Artista não alterado! Tente novamente");
                 }

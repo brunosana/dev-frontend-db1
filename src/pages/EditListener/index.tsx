@@ -45,19 +45,28 @@ const EditListener: React.FC = () => {
                         abortEarly: false,
                     },
                 );
-                const response = await api.put(`/v1/ouvinte/${params.id}/`, {
-                    phone,
-                    primeiro_nome,
-                    sobrenome,
-                    user_email: user,
-                });
-                if (response.status === 200) {
-                    // eslint-disable-next-line
-                    alert("Ouvinte alterado!");
-                    history.push('/listeners');
-                } else {
+                try {
+                    const response = await api.put(
+                        `/v1/ouvinte/${params.id}/`,
+                        {
+                            phone,
+                            primeiro_nome,
+                            sobrenome,
+                            user_email: user,
+                        },
+                    );
+                    if (response.status === 200) {
+                        // eslint-disable-next-line
+                        alert("Ouvinte alterado!");
+                        history.push('/listeners');
+                    } else {
+                        // eslint-disable-next-line
+                        alert("Ouvinte não alterado! Tente novamente");
+                    }
+                } catch (err) {
                     // eslint-disable-next-line
                     alert("Ouvinte não alterado! Tente novamente");
+
                 }
             } catch (err) {
                 const errors = getValidationErrors(err);
