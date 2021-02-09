@@ -59,9 +59,6 @@ export const Content = styled.div`
             color: ${shade(0.2, '#fff')};
         }
     }
-    a + a {
-        margin-left: 20px;
-    }
 
     #dropbtn {
         background-color: transparent;
