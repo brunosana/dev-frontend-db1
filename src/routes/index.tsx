@@ -9,6 +9,7 @@ import SignUp from '../pages/SignUp';
 import Musics from '../pages/Musics';
 import Artists from '../pages/Artists';
 import Listeners from '../pages/Listeners';
+import Follows from '../pages/Follows';
 
 import AddMusic from '../pages/AddMusic';
 import AddArtist from '../pages/AddArtist';
@@ -27,6 +28,7 @@ const Routes: React.FC = () => (
         <Route path="/home" component={Musics} isPrivate />
         <Route path="/artists" component={Artists} isPrivate />
         <Route path="/listeners" component={Listeners} isPrivate />
+        <Route path="/follows" component={Follows} isPrivate />
 
         <Route path="/addmusic" component={AddMusic} isPrivate />
         <Route path="/addartist" component={AddArtist} isPrivate />
