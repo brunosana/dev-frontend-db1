@@ -21,7 +21,7 @@ const AddArtist: React.FC = () => {
     const formRef = useRef<FormHandles>(null);
     const history = useHistory();
 
-    const handleEditMusic = useCallback(
+    const handleAddArtist = useCallback(
         async (data: AddArtistFOrmData) => {
             try {
                 const schema = Yup.object().shape({
@@ -46,12 +46,17 @@ const AddArtist: React.FC = () => {
                         abortEarly: false,
                     },
                 );
-                const response = await api.post('/v1/artista/', data);
-                if (response.status === 201) {
-                    history.push('/home');
-                } else {
+                try {
+                    const response = await api.post('/v1/artista/', data);
+                    if (response.status === 201) {
+                        history.push('/artists');
+                    } else {
+                        // eslint-disable-next-line
+                        alert('Artista não adicionado');
+                    }
+                } catch (err) {
                     // eslint-disable-next-line
-                    alert('Artista não adicionado');
+                    alert('Artista não adicionado')
                 }
             } catch (err) {
                 const errors = getValidationErrors(err);
@@ -68,7 +73,7 @@ const AddArtist: React.FC = () => {
                 <Container>
                     <FormArea>
                         <div>Add Artist</div>
-                        <Form ref={formRef} onSubmit={handleEditMusic}>
+                        <Form ref={formRef} onSubmit={handleAddArtist}>
                             <Input
                                 type="text"
                                 name="stage_name"
