@@ -35,6 +35,7 @@ const Header: React.FC = () => {
                 <Link to="/artists">Artists</Link>
                 <Link to="/listeners">Listeners</Link>
                 <Link to="/follows">Follows</Link>
+                <Link to="/likes">Likes</Link>
                 <Link to="/addmusic">Add Music</Link>
                 <Link to="/addartist">Add Artist</Link>
                 <Link to="/addlistener">Add Listener</Link>
@@ -68,6 +69,7 @@ const Header: React.FC = () => {
                             <Link to="/artists">Artists</Link>
                             <Link to="/listeners">Listeners</Link>
                             <Link to="/follows">Follows</Link>
+                            <Link to="/likes">Likes</Link>
                         </div>
                     </div>
                 </nav>
