@@ -13,9 +13,9 @@ import Listeners from '../pages/Listeners';
 import AddMusic from '../pages/AddMusic';
 import AddArtist from '../pages/AddArtist';
 import AddListener from '../pages/AddListener';
+import AddFollow from '../pages/AddFollow';
 
 import EditMusic from '../pages/EditMusic';
-// eslint-disable-next-line
 import EditArtist from '../pages/EditArtist';
 import EditListener from '../pages/EditListener';
 
@@ -31,6 +31,8 @@ const Routes: React.FC = () => (
         <Route path="/addmusic" component={AddMusic} isPrivate />
         <Route path="/addartist" component={AddArtist} isPrivate />
         <Route path="/addlistener" component={AddListener} isPrivate />
+        <Route path="/addfollow" component={AddFollow} isPrivate />
+
         <Route
             path="/editmusic/:id/:nome/:duracao"
             component={EditMusic}
