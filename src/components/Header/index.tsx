@@ -39,6 +39,7 @@ const Header: React.FC = () => {
                 <Link to="/addartist">Add Artist</Link>
                 <Link to="/addlistener">Add Listener</Link>
                 <Link to="/addfollow">Add Follow</Link>
+                <Link to="/addlike">Add Like</Link>
                 <LogoutMobile onClick={handleSignOut}>
                     <AiOutlinePoweroff />
                     <i>logout</i>
@@ -55,6 +56,7 @@ const Header: React.FC = () => {
                             <Link to="/addartist">Add Artist</Link>
                             <Link to="/addlistener">Add Listener</Link>
                             <Link to="/addfollow">Add Follow</Link>
+                            <Link to="/addlike">Add Like</Link>
                         </div>
                     </div>
                     <div id="dropdown">

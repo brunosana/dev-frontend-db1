@@ -15,6 +15,7 @@ import AddMusic from '../pages/AddMusic';
 import AddArtist from '../pages/AddArtist';
 import AddListener from '../pages/AddListener';
 import AddFollow from '../pages/AddFollow';
+import AddLike from '../pages/AddLike';
 
 import EditMusic from '../pages/EditMusic';
 import EditArtist from '../pages/EditArtist';
@@ -35,6 +36,7 @@ const Routes: React.FC = () => (
         <Route path="/addartist" component={AddArtist} isPrivate />
         <Route path="/addlistener" component={AddListener} isPrivate />
         <Route path="/addfollow" component={AddFollow} isPrivate />
+        <Route path="/addlike" component={AddLike} isPrivate />
 
         <Route
             path="/editmusic/:id/:nome/:duracao"
