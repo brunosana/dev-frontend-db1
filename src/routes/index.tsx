@@ -12,6 +12,8 @@ import Listeners from '../pages/Listeners';
 import Follows from '../pages/Follows';
 import Likes from '../pages/Likes';
 import Records from '../pages/Records';
+import Playlists from '../pages/Playlists';
+import Users from '../pages/Users';
 
 import AddMusic from '../pages/AddMusic';
 import AddArtist from '../pages/AddArtist';
@@ -19,6 +21,7 @@ import AddListener from '../pages/AddListener';
 import AddFollow from '../pages/AddFollow';
 import AddLike from '../pages/AddLike';
 import AddRecord from '../pages/AddRecord';
+import AddPlaylist from '../pages/AddPlaylist';
 
 import EditMusic from '../pages/EditMusic';
 import EditArtist from '../pages/EditArtist';
@@ -26,6 +29,8 @@ import EditListener from '../pages/EditListener';
 import EditFollow from '../pages/EditFollow';
 import EditLike from '../pages/EditLike';
 import EditRecord from '../pages/EditRecord';
+import EditPlaylist from '../pages/EditPlaylist';
+import EditUser from '../pages/EditUser';
 
 const Routes: React.FC = () => (
     <Switch>
@@ -38,6 +43,8 @@ const Routes: React.FC = () => (
         <Route path="/follows" component={Follows} isPrivate />
         <Route path="/likes" component={Likes} isPrivate />
         <Route path="/records" component={Records} isPrivate />
+        <Route path="/playlists" component={Playlists} isPrivate />
+        <Route path="/users" component={Users} isPrivate />
 
         <Route path="/addmusic" component={AddMusic} isPrivate />
         <Route path="/addartist" component={AddArtist} isPrivate />
@@ -45,6 +52,7 @@ const Routes: React.FC = () => (
         <Route path="/addfollow" component={AddFollow} isPrivate />
         <Route path="/addlike" component={AddLike} isPrivate />
         <Route path="/addrecord" component={AddRecord} isPrivate />
+        <Route path="/addplaylist" component={AddPlaylist} isPrivate />
 
         <Route
             path="/editmusic/:id/:nome/:duracao"
@@ -74,6 +82,16 @@ const Routes: React.FC = () => (
         <Route
             path="/editrecord/:id/:artista/:musica"
             component={EditRecord}
+            isPrivate
+        />
+        <Route
+            path="/editplaylist/:id/:nome/:enumeracao"
+            component={EditPlaylist}
+            isPrivate
+        />
+        <Route
+            path="/edituser/:id/:username/:birthday/:email/:age"
+            component={EditUser}
             isPrivate
         />
     </Switch>
