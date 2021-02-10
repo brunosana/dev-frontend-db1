@@ -9,28 +9,10 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import api from '../../services/api';
 import { Content, Container, Background, FormArea } from './styles';
-/**
- * {
-    "id": 1,
-    "user_email": "sana@sana.com",
-    "playlist": {
-      "nome": "Depressive songs",
-      "enumeração": true
-    }
-}
- */
+
 interface AddPlaylistFOrmData {
     user_email: string;
     playlist_nome: string;
-    enumeracao: boolean;
-}
-
-interface PlaylistProps {
-    user_email: string;
-    playlist: {
-        nome: string;
-        enumeracao: boolean;
-    };
 }
 
 const AddPlaylist: React.FC = () => {
@@ -45,11 +27,10 @@ const AddPlaylist: React.FC = () => {
                     playlist_nome: Yup.string().required(
                         'Playlist obrigatória',
                     ),
-                    enumeracao: Yup.bool().required('Enumeração obrigatória'),
                 });
-                const { user_email, playlist_nome, enumeracao } = data;
+                const { user_email, playlist_nome } = data;
                 await schema.validate(
-                    { user_email, playlist_nome, enumeracao },
+                    { user_email, playlist_nome },
                     {
                         abortEarly: false,
                     },
@@ -59,7 +40,7 @@ const AddPlaylist: React.FC = () => {
                         user_email,
                         playlist: {
                             nome: playlist_nome,
-                            enumeracao,
+                            enumeração: true,
                         },
                     });
                     if (response.status === 201) {
