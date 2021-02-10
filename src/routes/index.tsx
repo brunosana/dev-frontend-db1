@@ -30,6 +30,7 @@ import EditFollow from '../pages/EditFollow';
 import EditLike from '../pages/EditLike';
 import EditRecord from '../pages/EditRecord';
 import EditPlaylist from '../pages/EditPlaylist';
+import EditUser from '../pages/EditUser';
 
 const Routes: React.FC = () => (
     <Switch>
@@ -86,6 +87,11 @@ const Routes: React.FC = () => (
         <Route
             path="/editplaylist/:id/:nome/:enumeracao"
             component={EditPlaylist}
+            isPrivate
+        />
+        <Route
+            path="/edituser/:id/:username/:birthday/:email/:age"
+            component={EditUser}
             isPrivate
         />
     </Switch>
