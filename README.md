@@ -22,4 +22,4 @@
 1. type `yarn` on terminal, to install dependencies
 2. type `yarn start` to run server
 
-**This project has been developed by @brunosana and @jhenry0**
+**This project has been developed by [@brunosana](https://github.com/brunosana) and [@jhenry0](https://github.com/jhenry0)**
